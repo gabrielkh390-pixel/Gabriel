@@ -1,3 +1,4 @@
+pip install manifold3d
 import time
 import os
 import requests
