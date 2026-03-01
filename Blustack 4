@@ -1,0 +1,69 @@
+Blustack 4
+import time
+import sys
+
+# ==============================
+# CONFIGURAÇÃO
+# ==============================
+
+FPS = 60
+FRAME_TIME = 1.0 / FPS  # 60 FPS = ~1.0166s
+ESTABILIZADOR = 1.002   # margem de ajuste (suavização)
+
+# ==============================
+# FUNÇÃO PRINCIPAL
+# ==============================
+
+def executar_loop():
+    print("Iniciando sistema 60 FPS...")
+    print("Pressione CTRL+C para finalizar.\n")
+
+    contador_primeiro = 0
+    contador_segundo = 0
+
+    try:
+        while True:
+            inicio = time.time()
+
+            # ==========================
+            # SEQUÊNCIA 0-6 (primeiro)
+            # ==========================
+            print(f"Primeiro: {contador_primeiro}")
+
+            # ==========================
+            # SEQUÊNCIA .0-6 (segundo)
+            # ==========================
+            print(f"Segundo: .{contador_segundo}")
+
+            contador_primeiro = (contador_primeiro + 1) % 7
+            contador_segundo = (contador_segundo + 1) % 7
+
+            # ==========================
+            # CONTROLE DE FRAME TIME
+            # ==========================
+            tempo_execucao = time.time() - inicio
+            tempo_restante = FRAME_TIME - tempo_execucao
+
+            # Estabilizador (suaviza pequenas variações)
+            if tempo_restante > 0:
+                time.sleep(tempo_restante - ESTABILIZADOR)
+
+    except KeyboardInterrupt:
+        finalizar_programa()
+
+
+# ==============================
+# FINALIZAR PROGRAMA
+# ==============================
+
+def finalizar_programa():
+    print("\nFinalizando programa...")
+    sys.exit()
+
+
+# ==============================
+# EXECUÇÃO
+# ==============================
+
+if __name__ == "__main__":
+    executar_loop(import.time.import.sys)
